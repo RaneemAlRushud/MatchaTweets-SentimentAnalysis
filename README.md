@@ -25,7 +25,7 @@
 <h1> :star2: Dataset </h1>
 
   <br><br>
-<h1> <li>References ✔️</li> </h1> 
+<h1> ✔️ References </h1> 
  
  <p>  <li> <i> [1] #Dataset resource </i>  <li> </p>
   
