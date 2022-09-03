@@ -1,4 +1,7 @@
-<h1 align="center"> SWE486-Cloud ☁️ </h1>
+
+<h1 align="center">  Getting Started <img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="50px">  </h1> 
+
+<h2 align="center"> SWE486-Cloud ☁️ </h2>
 
 <br> <br>
 <p align="center">
