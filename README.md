@@ -6,6 +6,19 @@
 </p>
 
 
-<h1> Course Objective </h1>
+<h1> :star2: Course Objective </h1>
 
-<h1> Project Objective </h1>
+
+
+<h1> :star2: Project Objective </h1>
+<h2> 💡 Developing for </h2>
+
+<li> :one:  </li>
+<li> :two:  </li>
+<li> :three:  </li>
+<li>:four:  </li>
+<li> :five:  </li>
+
+<h1> :star2: Dataset </h1>
+
+
