@@ -3,7 +3,7 @@
 
 <h2 align="center"> SWE486-Cloud ☁️ </h2>
 
-<br> <br>
+<br>
 <p align="center">
 <img src="./board.svg" alt="" /> 
 </p>
