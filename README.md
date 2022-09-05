@@ -27,7 +27,7 @@
   <br><br>
 <h1> ✔️ References </h1> 
  
- <p>  <li> <i> [1] #Dataset resource </i>  <li> </p>
+ <p>  <li> <i> [1] #Dataset resource </i> <li> </p>
   
 <p>  <li> <i> [2]  </i>
 </li></p>
