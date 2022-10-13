@@ -1,67 +1,69 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[37]:
 
 
 #Libraries
 
 import pandas as pd
 import re 
+import string
 
 # Display the tweet fully using:
 pd.set_option('display.max_colwidth', None)
 pd.set_option('max_colwidth', None)
 
 
-# In[2]:
+# In[5]:
 
 
 df = pd.read_csv('Matcha#Dataset.csv')
+df2 = pd.read_csv('Matcha#DatasetTest.csv')
 
 
-# In[3]:
+# In[6]:
 
 
 # to return columns' names of the dataset
 df.columns
 
 
-# In[4]:
+# In[7]:
 
 
 # to return each column with the corresponding non-null values count and its data type
 df.info()
 
 
-# In[5]:
+# In[8]:
 
 
 # to return the count of non-null values in each column
 df.count()
 
 
-# In[6]:
+# In[9]:
 
 
 # to return the total number of rows
 len(df)
 
 
-# In[7]:
+# In[10]:
 
 
 # to return statistical calculations
 df.describe()
 
 
-# In[8]:
+# In[11]:
 
 
 df.head()
 
 
-# In[9]:
+# In[12]:
 
 
 df.shape
@@ -69,7 +71,7 @@ df.shape
 
 # Data Issues:
 
-# In[10]:
+# In[13]:
 
 
 # NORMALIZATION PROBLEM
@@ -83,20 +85,20 @@ def normalize(tweet):
     return tweet
 
 
-# In[11]:
+# In[14]:
 
 
 df['Tweet'] = df['Tweet'].apply(normalize)
 
 
-# In[12]:
+# In[15]:
 
 
 #Return a sample of the dataset
 df.sample(5)
 
 
-# In[13]:
+# In[16]:
 
 
 # To check if 'macha' has been replaced with 'matcha', an attempt to return any tweet that contains the word 'macha' is made
@@ -106,7 +108,7 @@ df.sample(5)
 df[df['Tweet'].str.contains('macha')]
 
 
-# In[14]:
+# In[17]:
 
 
 # Here, all of the tweets in the sample contain 'matcha' and not 'macha'
@@ -119,55 +121,33 @@ df[df['Tweet'].str.contains('matcha')].sample(10)
 
 
 
-# In[15]:
+# In[18]:
 
 
 # Find duplicated rows that have the same value in 'Tweet' column
 df[df.duplicated(subset='Tweet')].head()
 
 
-# In[16]:
+# In[19]:
 
 
 # duplicates count
 df.duplicated(subset='Tweet').sum()
 
 
-# In[17]:
+# In[20]:
 
 
 # remving rows that have "RT" in the begining of the tweet
 df = df[df["Tweet"].str.contains("RT") == False]
 
 
-# In[18]:
+# In[21]:
 
 
 # check if rows that "RT" in the begining of the tweet have been removed
 df[df["Tweet"].str.contains("RT")]
 # empty dataframe means no tweet exists with such keyword
-
-
-# In[19]:
-
-
-# check if duplicates were removed
-df.duplicated(subset='Tweet').sum()
-
-
-# In[20]:
-
-
-# Display duplicated rows
-duplicateRowsDF = df[df.duplicated(subset='Tweet')]
-duplicateRowsDF.head(4)
-
-
-# In[21]:
-
-
-# remove duplicates
-df.drop_duplicates(subset='Tweet', inplace=True)
 
 
 # In[22]:
@@ -180,11 +160,48 @@ df.duplicated(subset='Tweet').sum()
 # In[23]:
 
 
+# Display duplicated rows
+duplicateRowsDF = df[df.duplicated(subset='Tweet')]
+duplicateRowsDF.head(4)
+
+
+# In[24]:
+
+
+# remove duplicates
+df.drop_duplicates(subset='Tweet', inplace=True)
+
+
+# In[25]:
+
+
+# check if duplicates were removed
+df.duplicated(subset='Tweet').sum()
+
+
+# In[26]:
+
+
 # check total number of rows in df
 df.shape
 
 
-# In[24]:
+# In[27]:
+
+
+#Display tweets contain hyperlinks
+df2[df2['Tweet'].str.contains('http\S')].count()
+
+
+# In[28]:
+
+
+#Which .head(5) brings the 1st five rows tweets contain hyperlinks
+#As shouwn; it brings rows contain Hyperlinks before manipulating 
+df2[df2['Tweet'].str.contains('http\S')].head(5)
+
+
+# In[29]:
 
 
 #This function removes hyperlinks from the tweets
@@ -196,7 +213,36 @@ def remove_URL(tweet):
 df['Tweet'] = df['Tweet'].apply(remove_URL)
 
 
-# In[25]:
+# In[30]:
+
+
+#To make sure 'Tweet' Column doesn't contain hyperlinks [I]
+df[df['Tweet'].str.contains('http\S')].count()
+
+
+# In[31]:
+
+
+#To make sure 'Tweet' Column doesn't contain hyperlinks [II]
+#Which .head(5) brings the 1st five rows tweets contain hyperlinks
+#As shouwn; it doesn't bring any row
+df[df['Tweet'].str.contains('http\S')].head(5)
+
+
+# In[32]:
+
+
+#To make sure 'Tweet' Column doesn't contain punctuations (comma as an example)
+df[df['Tweet'].str.contains(',')].count()
+
+
+# In[33]:
+
+
+df[df['Tweet'].str.contains(',')].head(5)
+
+
+# In[39]:
 
 
 #This function removes punctuations from the tweets
@@ -209,6 +255,19 @@ def remove_punctuations(tweets):
 
 #Apply remove_punctuations method
 df['Tweet'] = df['Tweet'].apply(remove_punctuations)
+
+
+# In[40]:
+
+
+#To make sure 'Tweet' Column doesn't contain punctuations (comma as an example)
+df[df['Tweet'].str.contains(',')].count()
+
+
+# In[41]:
+
+
+df[df['Tweet'].str.contains(',')].head(5)
 
 
 # In[26]:
@@ -231,22 +290,4 @@ def remove_hashtags(tweet):
     tweet = tweet.replace('\r',' ')
     
     return tweet
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
